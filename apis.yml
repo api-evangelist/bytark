@@ -1,0 +1,162 @@
+aid: bytark
+url: https://raw.githubusercontent.com/api-evangelist/bytark/refs/heads/main/apis.yml
+name: ByteArk
+kind: company
+description: ByteArk is a Thailand-based video streaming and content delivery platform
+  founded in 2012 and headquartered in Bangkok. It provides video-on-demand (ByteArk
+  Stream), live streaming (Fleet / Teatro), an S3-compatible object storage service,
+  a global CDN, and a pre-configured web/mobile video player with DRM content protection.
+  Developers integrate through REST APIs authenticated with personal access tokens
+  and S3-compatible credentials.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Video
+- Streaming
+- Video on Demand
+- Live Streaming
+- CDN
+- Object Storage
+- Transcoding
+- DRM
+- Media
+created: '2026-07-01'
+modified: '2026-07-01'
+specificationVersion: '0.19'
+apis:
+- aid: bytark:bytark-stream-video-api
+  name: ByteArk Stream Video API
+  tags:
+  - Video
+  - Video on Demand
+  - Transcoding
+  - Media
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.byteark.com/en/stream/
+  baseURL: https://stream.byteark.com/api/v1
+  properties:
+  - url: https://docs.byteark.com/en/stream/
+    type: Documentation
+  - url: https://docs.byteark.com/en/stream/developer-api-video-uploading.html
+    type: APIReference
+  - url: openapi/bytark-openapi.yml
+    type: OpenAPI
+  - url: collections/bytark.postman_collection.json
+    type: PostmanCollection
+  - url: collections/bytark.opencollection.json
+    type: OpenCollection
+  description: Create video records within a project, upload source files, list and
+    filter the content library, and retrieve per-video information including the HLS
+    primary playback URL. Uploads use the ByteArk Stream Video Upload SDK or direct
+    form-data / resumable upload endpoints.
+- aid: bytark:bytark-live-streaming-api
+  name: ByteArk Live Streaming API
+  tags:
+  - Live Streaming
+  - Transcoding
+  - RTMP
+  - Media
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.byteark.com/en/fleet-streaming/live-api-transcoder.html
+  baseURL: https://fleet.byteark.com/api
+  properties:
+  - url: https://docs.byteark.com/en/fleet-streaming/live-api-transcoder.html
+    type: Documentation
+  - url: https://docs.byteark.com/en/fleet-streaming/live-api-transcoder.html
+    type: APIReference
+  - url: openapi/bytark-openapi.yml
+    type: OpenAPI
+  - url: collections/bytark.postman_collection.json
+    type: PostmanCollection
+  - url: collections/bytark.opencollection.json
+    type: OpenCollection
+  description: Fleet live transcode API to create, list, and delete live streaming
+    channels. Returns an RTMP publish endpoint and stream key for ingest, an HLS
+    (index.m3u8) viewing URL, and per-resolution transcode profiles. Also supports
+    dropping a publisher and resetting the transcoder.
+- aid: bytark:bytark-storage-api
+  name: ByteArk Storage API
+  tags:
+  - Object Storage
+  - S3
+  - Files
+  - Storage
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.byteark.com/en/storage/
+  baseURL: https://storage.byteark.com
+  properties:
+  - url: https://docs.byteark.com/en/storage/
+    type: Documentation
+  - url: openapi/bytark-openapi.yml
+    type: OpenAPI
+  - url: collections/bytark.postman_collection.json
+    type: PostmanCollection
+  - url: collections/bytark.opencollection.json
+    type: OpenCollection
+  description: S3-compatible object storage for storing and distributing files. Works
+    with standard S3 SDKs and tooling (bucket and object operations - put, get, list,
+    delete) using access-key / secret-key credentials. Tiered by redundancy (Basic,
+    Standard, Extra Redundancy).
+- aid: bytark:bytark-cdn-api
+  name: ByteArk CDN API
+  tags:
+  - CDN
+  - Delivery
+  - Caching
+  - Edge
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.byteark.com/en/fleet/
+  baseURL: https://fleet.byteark.com/api
+  properties:
+  - url: https://docs.byteark.com/en/fleet/
+    type: Documentation
+  - url: openapi/bytark-openapi.yml
+    type: OpenAPI
+  - url: collections/bytark.postman_collection.json
+    type: PostmanCollection
+  - url: collections/bytark.opencollection.json
+    type: OpenCollection
+  description: ByteArk Fleet CDN delivers web, app, and media assets across 15+ global
+    points of presence with 10+ POPs in Thailand. Developer surfaces cover cache
+    purge / invalidation and delivery configuration for origins served through the
+    edge network.
+- aid: bytark:bytark-player-api
+  name: ByteArk Player API
+  tags:
+  - Player
+  - Embed
+  - Media
+  - DRM
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.byteark.com/en/stream/settings-video-players.html
+  baseURL: https://player.byteark.com
+  properties:
+  - url: https://docs.byteark.com/en/stream/settings-video-players.html
+    type: Documentation
+  - url: openapi/bytark-openapi.yml
+    type: OpenAPI
+  - url: collections/bytark.postman_collection.json
+    type: PostmanCollection
+  - url: collections/bytark.opencollection.json
+    type: OpenCollection
+  description: Pre-configured HTML5 video player with framework packages for React,
+    Vue, and Angular. Renders HLS playback with DRM content protection (including
+    WisePlay), signed-URL access, and player-settings configuration surfaced through
+    the Stream player settings.
+common:
+- type: GitHubOrganization
+  url: https://github.com/byteark
+- type: LinkedIn
+  url: https://www.linkedin.com/company/byteark
+- type: Website
+  url: https://www.byteark.com/
+- type: Documentation
+  url: https://docs.byteark.com/en/
+- type: Plans
+  url: plans/bytark-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/bytark-rate-limits.yml
+- type: FinOps
+  url: finops/bytark-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

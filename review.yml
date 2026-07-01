@@ -1,0 +1,88 @@
+aid: bytark
+name: ByteArk
+review:
+  question: Does ByteArk expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-01'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. ByteArk's documented developer surfaces
+    (Stream Video API, Fleet live transcode API, S3-compatible Storage) are all
+    request/response HTTP(S) or standard streaming-media transports. The live
+    streaming ingest and delivery use RTMP (publish) and HLS (playback), which
+    are media streaming protocols, not application messaging surfaces suited to
+    AsyncAPI, and no HTTP SSE or WebSocket messaging API is documented.
+findings:
+  summary: |
+    ByteArk does not publish a documented public WebSocket API. Its Stream
+    Video-on-Demand API is REST over HTTPS (create / upload / list / get
+    videos) under https://stream.byteark.com/api/v1, authenticated with a
+    Bearer personal access token. The Fleet live transcode API is HTTP POST
+    (serviceId / apiKey path auth) under https://fleet.byteark.com/api. Object
+    Storage is S3-compatible (standard S3 clients). Live media itself flows
+    over RTMP for ingest and HLS (index.m3u8) for playback. None of these are
+    a bidirectional WebSocket (ws:// or wss://) application API.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://stream.byteark.com/api/v1
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://fleet.byteark.com/api
+      documented: true
+    - protocol: S3
+      scheme: https
+      note: S3-compatible object storage accessed with standard S3 SDKs/clients.
+      documented: true
+    - protocol: RTMP
+      scheme: rtmp
+      note: Live ingest publish endpoint (e.g. rtmp://publish.fleet.byteark.com/fleet). Media transport, not an application API.
+      documented: true
+    - protocol: HLS
+      scheme: https
+      note: Live and VOD playback via HLS (index.m3u8 / primaryPlaybackUrl). Media transport, not an application API.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in ByteArk's Stream, Fleet, Storage, or Player documentation as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://stream.byteark.com/api/v1/videos
+    - POST https://stream.byteark.com/api/v1/videos
+    - GET  https://stream.byteark.com/api/v1/videos/{videoKey}
+    - POST https://stream.byteark.com/api/v1/upload/v1/form-data/videos/{videoKey}
+    - POST https://fleet.byteark.com/api/{serviceId}/{apiKey}/createchannel
+    - POST https://fleet.byteark.com/api/{serviceId}/{apiKey}/listchannels
+    - POST https://fleet.byteark.com/api/{serviceId}/{apiKey}/deletechannel
+    - POST https://fleet.byteark.com/api/{serviceId}/{apiKey}/dropchannelpublisher
+    - POST https://fleet.byteark.com/api/{serviceId}/{apiKey}/dropchanneltranscoder
+sources:
+  - url: https://docs.byteark.com/en/stream/
+    type: Documentation
+    note: Stream VOD docs; REST base https://stream.byteark.com/api/v1, Bearer token auth. No WebSocket mentioned.
+  - url: https://docs.byteark.com/en/stream/developer-api-video-uploading.html
+    type: APIReference
+    note: Create video (POST /videos) and upload file endpoints; all HTTPS REST.
+  - url: https://docs.byteark.com/en/stream/developer-api-video-list.html
+    type: APIReference
+    note: List videos (GET /videos) with pagination and includes; HTTPS REST.
+  - url: https://docs.byteark.com/en/fleet-streaming/live-api-transcoder.html
+    type: Documentation
+    note: Live transcode API via HTTP POST; returns RTMP publish endpoint and HLS view URL. No WebSocket.
+  - url: https://docs.byteark.com/en/storage/
+    type: Documentation
+    note: S3-compatible object storage; standard S3 clients, not WebSocket.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or HTTP SSE application-messaging surface is documented, so no
+    AsyncAPI artifact was authored. RTMP ingest and HLS playback are media
+    streaming transports and are recorded in review.yml transports, not modeled
+    as AsyncAPI. The apis.yml catalogs the REST and S3-compatible surfaces that
+    do exist.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,194 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: ByteArk
+providerId: bytark
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: true
+tags:
+- Video
+- Streaming
+- CDN
+- Object Storage
+- Transcoding
+- Plans
+description: >-
+  ByteArk uses usage-based, pay-as-you-go pricing across its products. Video
+  transcoding is billed per output minute by maximum resolution, CDN data
+  transfer is billed per GB on a monthly tiered scale, and object storage is
+  billed per GB per month by redundancy tier. Prices below are published in
+  Thai Baht (THB) and include 7% VAT per ByteArk's 2024 pricing update; verify
+  the current rates on ByteArk's pricing pages.
+notes: >-
+  Rates reflect ByteArk's 2024 published pricing (THB, VAT included) and are
+  subject to change. Confirm current rates and any free allowances directly with
+  ByteArk during reconciliation.
+sources:
+- https://www.byteark.com/en/blogs/4
+- https://docs.byteark.com/en/
+- https://www.byteark.com/en/
+plans:
+- id: bytark-stream-transcoding
+  name: Stream Video Transcoding
+  type: usage
+  description: >-
+    Video-on-demand transcoding billed per output minute, priced by the maximum
+    output resolution.
+  entries:
+  - label: Transcode 1080p and below
+    name: transcode_1080p
+    type: usage
+    metric: minutes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: THB 1.5 per output minute
+    userMultiplied: false
+  - label: Transcode 720p and below
+    name: transcode_720p
+    type: usage
+    metric: minutes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: THB 1.2 per output minute
+    userMultiplied: false
+  - label: Transcode 480p and below
+    name: transcode_480p
+    type: usage
+    metric: minutes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: THB 1.0 per output minute
+    userMultiplied: false
+  elements:
+  - name: Stream Video API
+  - name: Player
+- id: bytark-cdn
+  name: CDN Data Transfer
+  type: usage
+  description: >-
+    Fleet CDN egress billed per GB on a monthly tiered scale; the effective
+    per-GB rate decreases as monthly volume increases.
+  entries:
+  - label: Under 30 TB / month
+    name: cdn_tier_1
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: THB 1.0 per GB
+    userMultiplied: false
+  - label: 30-100 TB / month
+    name: cdn_tier_2
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: THB 0.7 per GB
+    userMultiplied: false
+  - label: 100-300 TB / month
+    name: cdn_tier_3
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: THB 0.4 per GB
+    userMultiplied: false
+  - label: 300-1000 TB / month
+    name: cdn_tier_4
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: THB 0.3 per GB
+    userMultiplied: false
+  - label: Over 1000 TB / month
+    name: cdn_tier_5
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: CDN API
+  - name: Live Streaming API
+- id: bytark-storage
+  name: Object Storage
+  type: usage
+  description: >-
+    S3-compatible object storage billed per GB stored per month, priced by
+    redundancy tier. Stream (VOD) content defaults to the Basic tier.
+  entries:
+  - label: Basic tier storage
+    name: storage_basic
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: THB 1.0 per GB per month
+    userMultiplied: false
+  - label: Standard tier storage
+    name: storage_standard
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: THB 1.5 per GB per month
+    userMultiplied: false
+  - label: Extra Redundancy tier storage
+    name: storage_extra_redundancy
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: THB 3.0 per GB per month
+    userMultiplied: false
+  elements:
+  - name: Storage API
+- id: bytark-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom plans for high-volume streaming, private CDN capacity, DRM, and
+    dedicated support. Contact ByteArk sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Volume Commitments
+  - name: Dedicated CDN Capacity
+  - name: DRM Content Protection
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

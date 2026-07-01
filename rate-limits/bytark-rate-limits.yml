@@ -1,0 +1,72 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: ByteArk
+providerId: bytark
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Video
+- Streaming
+- CDN
+- Object Storage
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  ByteArk does not publish explicit numeric request-per-second rate limits for
+  its Stream, Storage, and Fleet APIs in public documentation. The most
+  concrete documented constraint is a per-account live transcode limit
+  (transcodelimit) capping the number of simultaneous active live transcodes,
+  which is raised on request through ByteArk sales. Storage and CDN are
+  usage-metered rather than request-throttled. Specific per-endpoint values are
+  not reconciled in this artifact.
+notes: >-
+  No public per-endpoint RPS/RPM tables were found. Verify request limits,
+  concurrency caps, and upload size limits with ByteArk support during
+  reconciliation. To raise the live transcode concurrency cap, contact
+  sales@byteark.com.
+sources:
+- https://docs.byteark.com/en/fleet-streaming/live-api-transcoder.html
+- https://docs.byteark.com/en/stream/
+- https://docs.byteark.com/en/
+responseCodes:
+  throttled: 429
+limits:
+- name: Simultaneous Live Transcodes
+  scope: account
+  metric: concurrent_transcodes
+  limit: see account transcodelimit
+  notes: >-
+    Per-account cap on simultaneous active live transcode channels, returned as
+    transcodelimit / transcodeusage in the live channel API. Raised on request.
+- name: Stream API Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No public numeric RPS/RPM limit documented for the Stream Video API.
+- name: Storage (S3) Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: >-
+    S3-compatible operations; no public numeric request limit documented.
+    Usage is billed by stored GB rather than request count.
+- name: CDN Delivery
+  scope: account
+  metric: bandwidth
+  limit: usage-metered
+  notes: CDN is metered per GB of egress; no documented request throttle.
+policies:
+- name: Concurrency-Based Limiting
+  description: >-
+    The primary documented constraint is a live transcode concurrency cap per
+    account rather than request-rate throttling.
+- name: Backoff Strategy
+  description: >-
+    Clients should implement exponential backoff with jitter and honor
+    Retry-After on any 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,105 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: ByteArk
+providerId: bytark
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: true
+tags:
+- Video
+- Streaming
+- CDN
+- Object Storage
+- Transcoding
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of ByteArk spend. ByteArk bills usage-based rates: video
+  transcoding per output minute (by resolution), CDN egress per GB on a monthly
+  tiered scale, and object storage per GB per month by redundancy tier. Pricing
+  is published in Thai Baht (THB) with VAT included.
+notes: >-
+  Rates are subject to change; verify against ByteArk's pricing pages during
+  reconciliation. Currency is THB.
+sources:
+- https://www.byteark.com/en/blogs/4
+- https://docs.byteark.com/en/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: ByteArk
+serviceCategory: Media and Content Delivery
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: THB
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: ByteArk
+  ServiceCategory: Media and Content Delivery
+  ProviderName: ByteArk
+  PublisherName: ByteArk
+  InvoiceIssuerName: ByteArk
+  BillingCurrency: THB
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: transcode_minutes
+  description: Video output minutes transcoded, billed per minute by maximum output resolution.
+  unit: minutes
+  aggregation: sum
+  dimensions:
+  - account
+  - resolution
+  - project
+- name: cdn_egress_gb
+  description: CDN data transfer (egress) billed per GB on a monthly tiered scale.
+  unit: gigabytes
+  aggregation: sum
+  dimensions:
+  - account
+  - region
+- name: storage_gb_month
+  description: Object storage billed per GB stored per month by redundancy tier.
+  unit: gigabytes
+  aggregation: average
+  dimensions:
+  - account
+  - tier
+  - bucket
+- name: live_transcode_usage
+  description: Live transcode concurrency consumed against the account transcode limit.
+  unit: channels
+  aggregation: max
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: >-
+    Use the Lighthouse analytics dashboard and ByteArk billing to inspect
+    transcode minutes, CDN egress by tier, and stored GB per bucket.
+- name: Allocation
+  description: >-
+    Organize content by project and bucket to map transcode, storage, and
+    delivery cost to internal teams and titles.
+- name: Optimization
+  description: >-
+    Cap max output resolution to the lowest acceptable tier, right-size the
+    storage redundancy tier (Basic for VOD), and lean into CDN volume tiers as
+    monthly egress grows to lower the effective per-GB rate.
+- name: Accountability
+  description: >-
+    Assign owners per project; review transcode-minute burn, egress tier, and
+    stored GB monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,201 @@
+{
+  "info": {
+    "_postman_id": "b7a2c1d4-8e3f-4a51-9c2b-1f0e6d7a5b90",
+    "name": "ByteArk API",
+    "description": "Representative Postman collection for ByteArk's public developer surfaces: the Stream Video-on-Demand API and the Fleet live transcode API. Stream endpoints authenticate with a Bearer personal access token; Fleet live endpoints authenticate with a serviceId / apiKey path pair.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "streamBaseUrl",
+      "value": "https://stream.byteark.com/api/v1"
+    },
+    {
+      "key": "fleetBaseUrl",
+      "value": "https://fleet.byteark.com/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "Stream Videos",
+      "item": [
+        {
+          "name": "List videos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{streamBaseUrl}}/videos?projectKey=&page=1&size=20",
+              "host": ["{{streamBaseUrl}}"],
+              "path": ["videos"],
+              "query": [
+                { "key": "projectKey", "value": "" },
+                { "key": "tagIds", "value": "", "disabled": true },
+                { "key": "includes", "value": "player,tags", "disabled": true },
+                { "key": "page", "value": "1" },
+                { "key": "size", "value": "20" }
+              ]
+            },
+            "description": "Returns a paginated list of videos, optionally filtered by project and tags."
+          },
+          "response": []
+        },
+        {
+          "name": "Create video(s)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectKey\": \"<string>\",\n  \"videos\": [\n    {\n      \"title\": \"<string>\",\n      \"tags\": []\n    }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{streamBaseUrl}}/videos",
+              "host": ["{{streamBaseUrl}}"],
+              "path": ["videos"]
+            },
+            "description": "Creates one or more video records within a project. Returns each video key and primary HLS playback URL."
+          },
+          "response": []
+        },
+        {
+          "name": "Get a video",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{streamBaseUrl}}/videos/:videoKey",
+              "host": ["{{streamBaseUrl}}"],
+              "path": ["videos", ":videoKey"],
+              "variable": [
+                { "key": "videoKey", "value": "", "description": "The unique key of the video." }
+              ]
+            },
+            "description": "Retrieves information about a single video by its key."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Stream Uploads",
+      "item": [
+        {
+          "name": "Upload a video file",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": [], "description": "The source video file to upload." }
+              ]
+            },
+            "url": {
+              "raw": "{{streamBaseUrl}}/upload/v1/form-data/videos/:videoKey",
+              "host": ["{{streamBaseUrl}}"],
+              "path": ["upload", "v1", "form-data", "videos", ":videoKey"],
+              "variable": [
+                { "key": "videoKey", "value": "", "description": "The key of the video to upload the file to." }
+              ]
+            },
+            "description": "Uploads a source video file via multipart form-data. Large files can use resumable uploads through the Video Upload SDK."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Live Streaming",
+      "item": [
+        {
+          "name": "Create a live channel",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "streamname", "value": "", "description": "Channel identifier / stream name." },
+                { "key": "transcode[720p]", "value": "1", "description": "Set to 1 to enable the 720p transcode profile." }
+              ]
+            },
+            "url": {
+              "raw": "{{fleetBaseUrl}}/:serviceId/:apiKey/createchannel",
+              "host": ["{{fleetBaseUrl}}"],
+              "path": [":serviceId", ":apiKey", "createchannel"],
+              "variable": [
+                { "key": "serviceId", "value": "", "description": "Fleet service identifier." },
+                { "key": "apiKey", "value": "", "description": "Fleet API key." }
+              ]
+            },
+            "description": "Creates a live channel and returns the RTMP publish endpoint, stream key, and HLS viewing URL."
+          },
+          "response": []
+        },
+        {
+          "name": "List live channels",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{fleetBaseUrl}}/:serviceId/:apiKey/listchannels",
+              "host": ["{{fleetBaseUrl}}"],
+              "path": [":serviceId", ":apiKey", "listchannels"],
+              "variable": [
+                { "key": "serviceId", "value": "" },
+                { "key": "apiKey", "value": "" }
+              ]
+            },
+            "description": "Returns all active live channels with their endpoints and transcode status."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a live channel",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "streamname", "value": "", "description": "The stream name of the channel to delete." }
+              ]
+            },
+            "url": {
+              "raw": "{{fleetBaseUrl}}/:serviceId/:apiKey/deletechannel",
+              "host": ["{{fleetBaseUrl}}"],
+              "path": [":serviceId", ":apiKey", "deletechannel"],
+              "variable": [
+                { "key": "serviceId", "value": "" },
+                { "key": "apiKey", "value": "" }
+              ]
+            },
+            "description": "Deletes a live channel and halts publishing and transcoding."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ByteArk API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stream Videos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List videos in the account, optionally filtered by project and tags.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stream.byteark.com/api/v1/videos"
+          },
+          "docs": "Returns a paginated list of videos. Supports projectKey, tagIds, includes, page, and size query parameters."
+        },
+        {
+          "info": {
+            "name": "Create one or more videos within a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stream.byteark.com/api/v1/videos",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"projectKey\": \"\",\n  \"videos\": [\n    { \"title\": \"\", \"tags\": [] }\n  ]\n}"
+            }
+          },
+          "docs": "Creates video records and returns each video key plus the primary HLS playback URL."
+        },
+        {
+          "info": {
+            "name": "Get information about a single video.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stream.byteark.com/api/v1/videos/:videoKey",
+            "params": [
+              {
+                "name": "videoKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the video."
+              }
+            ]
+          },
+          "docs": "Retrieves information about a single video by its key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stream Uploads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a source video file to a created video record.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stream.byteark.com/api/v1/upload/v1/form-data/videos/:videoKey",
+            "params": [
+              {
+                "name": "videoKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the video to upload the file to."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Uploads a source video file via multipart form-data. Large files can use resumable uploads through the Video Upload SDK."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Live Streaming",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Fleet live transcode channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fleet.byteark.com/api/:serviceId/:apiKey/createchannel",
+            "params": [
+              { "name": "serviceId", "value": "", "type": "path", "description": "Fleet service identifier." },
+              { "name": "apiKey", "value": "", "type": "path", "description": "Fleet API key." }
+            ],
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a live channel and returns the RTMP publish endpoint, stream key, and HLS viewing URL."
+        },
+        {
+          "info": {
+            "name": "List active Fleet live channels.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fleet.byteark.com/api/:serviceId/:apiKey/listchannels",
+            "params": [
+              { "name": "serviceId", "value": "", "type": "path" },
+              { "name": "apiKey", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "Returns all active live channels with their endpoints and transcode status."
+        },
+        {
+          "info": {
+            "name": "Delete a Fleet live channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fleet.byteark.com/api/:serviceId/:apiKey/deletechannel",
+            "params": [
+              { "name": "serviceId", "value": "", "type": "path" },
+              { "name": "apiKey", "value": "", "type": "path" }
+            ],
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Deletes a live channel and halts publishing and transcoding."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
