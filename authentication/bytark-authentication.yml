@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bytark-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'Personal access token passed as `Authorization: Bearer <token>`. Tokens are
+    generated in the ByteArk Personal Access Token settings. Fleet live channel endpoints instead
+    authenticate with a serviceId / apiKey path pair.'
+  sources:
+  - openapi/bytark-openapi.yml

@@ -143,6 +143,10 @@ apis:
     WisePlay), signed-URL access, and player-settings configuration surfaced through
     the Stream player settings.
 common:
+- type: DomainSecurity
+  url: security/bytark-domain-security.yml
+- type: Authentication
+  url: authentication/bytark-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/byteark
 - type: LinkedIn
