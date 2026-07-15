@@ -143,6 +143,8 @@ apis:
     WisePlay), signed-URL access, and player-settings configuration surfaced through
     the Stream player settings.
 common:
+- type: AgenticAccess
+  url: agentic-access/bytark-agentic-access.yml
 - type: DomainSecurity
   url: security/bytark-domain-security.yml
 - type: Authentication
