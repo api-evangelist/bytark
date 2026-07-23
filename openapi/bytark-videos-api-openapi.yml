@@ -1,0 +1,192 @@
+openapi: 3.0.1
+info:
+  title: ByteArk Live Videos API
+  description: 'Representative OpenAPI description of ByteArk''s public developer surfaces: the Stream Video-on-Demand API (create / upload / list / get videos) and the Fleet Live Streaming (live transcode) API. S3-compatible Storage and CDN delivery are documented separately by ByteArk; the Storage service is accessed via standard S3 clients and is not fully re-specified here.'
+  termsOfService: https://www.byteark.com/en/terms
+  contact:
+    name: ByteArk Support
+    url: https://www.byteark.com/en/contact
+  version: '1.0'
+servers:
+- url: https://stream.byteark.com/api/v1
+  description: ByteArk Stream (Video on Demand)
+- url: https://fleet.byteark.com/api
+  description: ByteArk Fleet (Live Streaming / CDN)
+security:
+- bearerAuth: []
+tags:
+- name: Videos
+  description: Video-on-demand records and playback in ByteArk Stream.
+paths:
+  /videos:
+    get:
+      operationId: listVideos
+      tags:
+      - Videos
+      summary: List videos
+      description: Returns a paginated list of videos in the account, optionally filtered by project and tags. Use `includes` to expand related resources.
+      parameters:
+      - name: projectKey
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter videos by project key.
+      - name: tagIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: Filter videos by tag IDs.
+      - name: includes
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - project
+            - player
+            - tags
+            - creator
+            - vod.source
+        description: Expand the response with related resources.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+        description: Page index (starts at 1).
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Number of results per page.
+      responses:
+        '200':
+          description: A paginated list of videos.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoList'
+    post:
+      operationId: createVideos
+      tags:
+      - Videos
+      summary: Create video(s)
+      description: Creates one or more video records within a project. The response includes each video's key and primary HLS playback URL. A source file is then uploaded to the returned video key.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVideosRequest'
+      responses:
+        '200':
+          description: The created video records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Video'
+  /videos/{videoKey}:
+    get:
+      operationId: getVideo
+      tags:
+      - Videos
+      summary: Get a video
+      description: Retrieves information about a single video by its key.
+      parameters:
+      - name: videoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique key of the video.
+      responses:
+        '200':
+          description: The video information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+components:
+  schemas:
+    CreateVideosRequest:
+      type: object
+      required:
+      - projectKey
+      - videos
+      properties:
+        projectKey:
+          type: string
+          description: The project the videos belong to.
+        videos:
+          type: array
+          items:
+            type: object
+            required:
+            - title
+            properties:
+              title:
+                type: string
+              tags:
+                type: array
+                items:
+                  type: string
+    Video:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+          description: Unique video key used for uploads and playback references.
+        title:
+          type: string
+        coverImage:
+          type: object
+          properties:
+            sizes:
+              type: object
+              additionalProperties:
+                type: string
+        primaryPlaybackUrl:
+          type: object
+          properties:
+            hls:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+    VideoList:
+      type: object
+      properties:
+        total:
+          type: integer
+        from:
+          type: integer
+        to:
+          type: integer
+        currentPage:
+          type: integer
+        lastPage:
+          type: integer
+        perPage:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Video'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token passed as `Authorization: Bearer <token>`. Tokens are generated in the ByteArk Personal Access Token settings. Fleet live channel endpoints instead authenticate with a serviceId / apiKey path pair.'

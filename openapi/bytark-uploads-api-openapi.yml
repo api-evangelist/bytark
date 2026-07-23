@@ -1,0 +1,56 @@
+openapi: 3.0.1
+info:
+  title: ByteArk Live Uploads API
+  description: 'Representative OpenAPI description of ByteArk''s public developer surfaces: the Stream Video-on-Demand API (create / upload / list / get videos) and the Fleet Live Streaming (live transcode) API. S3-compatible Storage and CDN delivery are documented separately by ByteArk; the Storage service is accessed via standard S3 clients and is not fully re-specified here.'
+  termsOfService: https://www.byteark.com/en/terms
+  contact:
+    name: ByteArk Support
+    url: https://www.byteark.com/en/contact
+  version: '1.0'
+servers:
+- url: https://stream.byteark.com/api/v1
+  description: ByteArk Stream (Video on Demand)
+- url: https://fleet.byteark.com/api
+  description: ByteArk Fleet (Live Streaming / CDN)
+security:
+- bearerAuth: []
+tags:
+- name: Uploads
+  description: Uploading source video files to a Stream video record.
+paths:
+  /upload/v1/form-data/videos/{videoKey}:
+    post:
+      operationId: uploadVideoFile
+      tags:
+      - Uploads
+      summary: Upload a video file
+      description: Uploads a source video file to a previously created video record using multipart form-data. For large files, ByteArk also supports resumable uploads via the Video Upload SDK.
+      parameters:
+      - name: videoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The key of the video to upload the file to.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The source video file to upload.
+              required:
+              - file
+      responses:
+        '200':
+          description: Upload accepted; the video enters transcoding.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token passed as `Authorization: Bearer <token>`. Tokens are generated in the ByteArk Personal Access Token settings. Fleet live channel endpoints instead authenticate with a serviceId / apiKey path pair.'

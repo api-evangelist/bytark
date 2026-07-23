@@ -1,0 +1,152 @@
+openapi: 3.0.1
+info:
+  title: ByteArk Live API
+  description: 'Representative OpenAPI description of ByteArk''s public developer surfaces: the Stream Video-on-Demand API (create / upload / list / get videos) and the Fleet Live Streaming (live transcode) API. S3-compatible Storage and CDN delivery are documented separately by ByteArk; the Storage service is accessed via standard S3 clients and is not fully re-specified here.'
+  termsOfService: https://www.byteark.com/en/terms
+  contact:
+    name: ByteArk Support
+    url: https://www.byteark.com/en/contact
+  version: '1.0'
+servers:
+- url: https://stream.byteark.com/api/v1
+  description: ByteArk Stream (Video on Demand)
+- url: https://fleet.byteark.com/api
+  description: ByteArk Fleet (Live Streaming / CDN)
+security:
+- bearerAuth: []
+tags:
+- name: Live
+  description: Fleet live transcode channels.
+paths:
+  /{serviceId}/{apiKey}/createchannel:
+    servers:
+    - url: https://fleet.byteark.com/api
+    post:
+      operationId: createLiveChannel
+      tags:
+      - Live
+      summary: Create a live channel
+      description: Creates a Fleet live transcode channel and returns the RTMP publish endpoint, stream key, and HLS viewing URL. Enable per-resolution transcode profiles (1080p / 720p / 576p / 480p / 360p / 240p).
+      parameters:
+      - name: serviceId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Fleet service identifier.
+      - name: apiKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Fleet API key.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                streamname:
+                  type: string
+                  description: Channel identifier / stream name.
+                transcode[720p]:
+                  type: integer
+                  description: Set to 1 to enable the 720p transcode profile.
+              required:
+              - streamname
+      responses:
+        '200':
+          description: The created live channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveChannel'
+  /{serviceId}/{apiKey}/listchannels:
+    servers:
+    - url: https://fleet.byteark.com/api
+    post:
+      operationId: listLiveChannels
+      tags:
+      - Live
+      summary: List live channels
+      description: Returns all active live channels with their endpoints and status.
+      parameters:
+      - name: serviceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: apiKey
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The list of live channels.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LiveChannel'
+  /{serviceId}/{apiKey}/deletechannel:
+    servers:
+    - url: https://fleet.byteark.com/api
+    post:
+      operationId: deleteLiveChannel
+      tags:
+      - Live
+      summary: Delete a live channel
+      description: Deletes a live channel and halts publishing and transcoding.
+      parameters:
+      - name: serviceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: apiKey
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                streamname:
+                  type: string
+              required:
+              - streamname
+      responses:
+        '200':
+          description: The channel was deleted.
+components:
+  schemas:
+    LiveChannel:
+      type: object
+      properties:
+        streamid:
+          type: string
+        streamkey:
+          type: string
+          description: RTMP authentication key.
+        streamendpoint:
+          type: string
+          description: RTMP publish address (e.g. rtmp://publish.fleet.byteark.com/fleet).
+        streamurl:
+          type: string
+          description: HLS viewing URL ending in index.m3u8.
+        transcodelimit:
+          type: integer
+        transcodeusage:
+          type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token passed as `Authorization: Bearer <token>`. Tokens are generated in the ByteArk Personal Access Token settings. Fleet live channel endpoints instead authenticate with a serviceId / apiKey path pair.'
