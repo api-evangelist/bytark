@@ -1,0 +1,18 @@
+{
+  "provider": "bytark",
+  "sources": [
+    "bytark-live-api-openapi.yml",
+    "bytark-uploads-api-openapi.yml",
+    "bytark-videos-api-openapi.yml"
+  ],
+  "outputs": [
+    "bytark-live-api-openapi.yml",
+    "bytark-uploads-api-openapi.yml",
+    "bytark-videos-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
