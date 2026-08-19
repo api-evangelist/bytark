@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ByteArk Live Uploads API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Uploads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a video file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stream.byteark.com/api/v1/upload/v1/form-data/videos/:videoKey",
+            "params": [
+              {
+                "name": "videoKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the video to upload the file to."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a source video file to a previously created video record using multipart form-data. For large files, ByteArk also supports resumable uploads via the Video Upload SDK."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

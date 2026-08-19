@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ByteArk Live Videos API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Videos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stream.byteark.com/api/v1/videos",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "query",
+                "description": "Filter videos by project key."
+              },
+              {
+                "name": "tagIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter videos by tag IDs."
+              },
+              {
+                "name": "includes",
+                "value": "",
+                "type": "query",
+                "description": "Expand the response with related resources."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page index (starts at 1)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of videos in the account, optionally filtered by project and tags. Use `includes` to expand related resources."
+        },
+        {
+          "info": {
+            "name": "Create video(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stream.byteark.com/api/v1/videos",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates one or more video records within a project. The response includes each video's key and primary HLS playback URL. A source file is then uploaded to the returned video key."
+        },
+        {
+          "info": {
+            "name": "Get a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stream.byteark.com/api/v1/videos/:videoKey",
+            "params": [
+              {
+                "name": "videoKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the video."
+              }
+            ]
+          },
+          "docs": "Retrieves information about a single video by its key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

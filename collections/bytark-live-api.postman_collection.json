@@ -1,0 +1,455 @@
+{
+  "item": [
+    {
+      "id": "50cc488b-6cce-4dbd-84c6-d8210e9a4bff",
+      "name": "Live",
+      "description": {
+        "content": "Fleet live transcode channels.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a74378fd-d978-4b2c-a476-481e3b75e3c3",
+          "name": "Create a live channel",
+          "request": {
+            "name": "Create a live channel",
+            "description": {
+              "content": "Creates a Fleet live transcode channel and returns the RTMP publish endpoint, stream key, and HLS viewing URL. Enable per-resolution transcode profiles (1080p / 720p / 576p / 480p / 360p / 240p).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":serviceId",
+                ":apiKey",
+                "createchannel"
+              ],
+              "host": [
+                "{{serviceId-apiKey-createchannel-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Fleet service identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) Fleet API key."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "streamname",
+                  "value": "<string>",
+                  "description": "(Required) Channel identifier / stream name."
+                },
+                {
+                  "disabled": false,
+                  "key": "transcode[720p]",
+                  "value": "<integer>",
+                  "description": "Set to 1 to enable the 720p transcode profile."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8963f397-70e3-4a08-ad1f-1c37d103175b",
+              "name": "The created live channel.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":serviceId",
+                    ":apiKey",
+                    "createchannel"
+                  ],
+                  "host": [
+                    "{{serviceId-apiKey-createchannel-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Fleet service identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiKey",
+                      "description": "(Required) Fleet API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Channel identifier / stream name.",
+                        "type": "text/plain"
+                      },
+                      "key": "streamname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Set to 1 to enable the 720p transcode profile.",
+                        "type": "text/plain"
+                      },
+                      "key": "transcode[720p]",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"streamid\": \"string\",\n  \"streamkey\": \"string\",\n  \"streamendpoint\": \"string\",\n  \"streamurl\": \"string\",\n  \"transcodelimit\": 4650,\n  \"transcodeusage\": 6117\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c875c8c2-58f4-40a9-ac0c-17822dbfe2f5",
+          "name": "List live channels",
+          "request": {
+            "name": "List live channels",
+            "description": {
+              "content": "Returns all active live channels with their endpoints and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":serviceId",
+                ":apiKey",
+                "listchannels"
+              ],
+              "host": [
+                "{{serviceId-apiKey-listchannels-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9408c549-5792-4c43-936c-17e3c5fb049d",
+              "name": "The list of live channels.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":serviceId",
+                    ":apiKey",
+                    "listchannels"
+                  ],
+                  "host": [
+                    "{{serviceId-apiKey-listchannels-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiKey",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"streamid\": \"string\",\n    \"streamkey\": \"string\",\n    \"streamendpoint\": \"string\",\n    \"streamurl\": \"string\",\n    \"transcodelimit\": 5254,\n    \"transcodeusage\": 2993\n  },\n  {\n    \"streamid\": \"string\",\n    \"streamkey\": \"string\",\n    \"streamendpoint\": \"string\",\n    \"streamurl\": \"string\",\n    \"transcodelimit\": 9061,\n    \"transcodeusage\": 2425\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "605902ed-597c-4673-8ebc-3d7215760cc1",
+          "name": "Delete a live channel",
+          "request": {
+            "name": "Delete a live channel",
+            "description": {
+              "content": "Deletes a live channel and halts publishing and transcoding.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":serviceId",
+                ":apiKey",
+                "deletechannel"
+              ],
+              "host": [
+                "{{serviceId-apiKey-deletechannel-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "streamname",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f2b40e20-c520-4435-89e4-4440e775dc27",
+              "name": "The channel was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":serviceId",
+                    ":apiKey",
+                    "deletechannel"
+                  ],
+                  "host": [
+                    "{{serviceId-apiKey-deletechannel-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiKey",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "streamname",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stream.byteark.com/api/v1",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://fleet.byteark.com/api",
+      "key": "serviceId-apiKey-createchannel-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://fleet.byteark.com/api",
+      "key": "serviceId-apiKey-listchannels-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://fleet.byteark.com/api",
+      "key": "serviceId-apiKey-deletechannel-Url"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c6f739f6-ee6c-4d5f-a304-f83de91bd798",
+    "name": "ByteArk Live API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative OpenAPI description of ByteArk's public developer surfaces: the Stream Video-on-Demand API (create / upload / list / get videos) and the Fleet Live Streaming (live transcode) API. S3-compatible Storage and CDN delivery are documented separately by ByteArk; the Storage service is accessed via standard S3 clients and is not fully re-specified here.\n\nContact Support:\n Name: ByteArk Support",
+      "type": "text/plain"
+    }
+  }
+}

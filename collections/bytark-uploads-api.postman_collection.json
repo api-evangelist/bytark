@@ -1,0 +1,162 @@
+{
+  "item": [
+    {
+      "id": "b9c3d40f-329c-4167-a781-cdb0ac83f210",
+      "name": "Uploads",
+      "description": {
+        "content": "Uploading source video files to a Stream video record.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c275ba34-00e1-4ccd-94f4-0e3a11d2dfd8",
+          "name": "Upload a video file",
+          "request": {
+            "name": "Upload a video file",
+            "description": {
+              "content": "Uploads a source video file to a previously created video record using multipart form-data. For large files, ByteArk also supports resumable uploads via the Video Upload SDK.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "upload",
+                "v1",
+                "form-data",
+                "videos",
+                ":videoKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "videoKey",
+                  "description": "(Required) The key of the video to upload the file to."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) The source video file to upload."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bc624ad4-5284-4a92-b20c-29397cca20f2",
+              "name": "Upload accepted; the video enters transcoding.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "upload",
+                    "v1",
+                    "form-data",
+                    "videos",
+                    ":videoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "videoKey",
+                      "description": "(Required) The key of the video to upload the file to."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The source video file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stream.byteark.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d14943bf-75b6-4392-857b-f883c3f74ed3",
+    "name": "ByteArk Live Uploads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative OpenAPI description of ByteArk's public developer surfaces: the Stream Video-on-Demand API (create / upload / list / get videos) and the Fleet Live Streaming (live transcode) API. S3-compatible Storage and CDN delivery are documented separately by ByteArk; the Storage service is accessed via standard S3 clients and is not fully re-specified here.\n\nContact Support:\n Name: ByteArk Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ByteArk Live API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a live channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stream.byteark.com/api/v1/:serviceId/:apiKey/createchannel",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Fleet service identifier."
+              },
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "path",
+                "description": "Fleet API key."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "streamname",
+                  "value": ""
+                },
+                {
+                  "name": "transcode[720p]",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a Fleet live transcode channel and returns the RTMP publish endpoint, stream key, and HLS viewing URL. Enable per-resolution transcode profiles (1080p / 720p / 576p / 480p / 360p / 240p)."
+        },
+        {
+          "info": {
+            "name": "List live channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stream.byteark.com/api/v1/:serviceId/:apiKey/listchannels",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns all active live channels with their endpoints and status."
+        },
+        {
+          "info": {
+            "name": "Delete a live channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://stream.byteark.com/api/v1/:serviceId/:apiKey/deletechannel",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "streamname",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Deletes a live channel and halts publishing and transcoding."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

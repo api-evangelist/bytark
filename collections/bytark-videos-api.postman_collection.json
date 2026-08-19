@@ -1,0 +1,386 @@
+{
+  "item": [
+    {
+      "id": "7d1c6598-5145-4fb5-9f60-35dad4ce0643",
+      "name": "Videos",
+      "description": {
+        "content": "Video-on-demand records and playback in ByteArk Stream.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "639ed563-2bd4-4efe-9a7b-202fdaf641e2",
+          "name": "List videos",
+          "request": {
+            "name": "List videos",
+            "description": {
+              "content": "Returns a paginated list of videos in the account, optionally filtered by project and tags. Use `includes` to expand related resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectKey",
+                  "value": "<string>",
+                  "description": "Filter videos by project key."
+                },
+                {
+                  "disabled": false,
+                  "key": "tagIds",
+                  "value": "<string>",
+                  "description": "Filter videos by tag IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "tagIds",
+                  "value": "<string>",
+                  "description": "Filter videos by tag IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "includes",
+                  "value": "<string>",
+                  "description": "Expand the response with related resources."
+                },
+                {
+                  "disabled": false,
+                  "key": "includes",
+                  "value": "<string>",
+                  "description": "Expand the response with related resources."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page index (starts at 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Number of results per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b532e24-7e42-4e81-9ab2-15c8615ff233",
+              "name": "A paginated list of videos.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 8162,\n  \"from\": 1259,\n  \"to\": 4331,\n  \"currentPage\": 5694,\n  \"lastPage\": 5529,\n  \"perPage\": 3069,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"title\": \"string\",\n      \"coverImage\": {\n        \"sizes\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"primaryPlaybackUrl\": {\n        \"hls\": {\n          \"url\": \"https://kBRg.eqjFmri+2sNrAFQPHv35Yl00v\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"title\": \"string\",\n      \"coverImage\": {\n        \"sizes\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"primaryPlaybackUrl\": {\n        \"hls\": {\n          \"url\": \"https://TdQslRCneIWJXDbDEsHfUttPhz.vvirPDwej.mHBFd7iuFLLgyf+IiFnfXvitKQkxS,tgdlwc2UhbdGM2\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a69e8706-a0d8-4c24-8ff5-b2b906909b34",
+          "name": "Create video(s)",
+          "request": {
+            "name": "Create video(s)",
+            "description": {
+              "content": "Creates one or more video records within a project. The response includes each video's key and primary HLS playback URL. A source file is then uploaded to the returned video key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectKey\": \"<string>\",\n  \"videos\": [\n    {\n      \"title\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"title\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a42fac7c-7bf4-4c02-9cb4-4941fc55efc3",
+              "name": "The created video records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectKey\": \"<string>\",\n  \"videos\": [\n    {\n      \"title\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"title\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"title\": \"string\",\n    \"coverImage\": {\n      \"sizes\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"primaryPlaybackUrl\": {\n      \"hls\": {\n        \"url\": \"https://MoJhTbxQYJE.aaE85mrvXYjUQ3N.,FG+MXQrVmieM.apTBhTJgXx3VzRRKaiSAvzY.Rceg\"\n      }\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"title\": \"string\",\n    \"coverImage\": {\n      \"sizes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"primaryPlaybackUrl\": {\n      \"hls\": {\n        \"url\": \"https://aibeMacoBGCKtxCpplXHabK.mtgy,lzyXDUsgrlsrhrK5m4BczY7SQRagQgHe5bCFl\"\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1668953d-b2d3-408a-8c8e-e5f8bfb6cc13",
+          "name": "Get a video",
+          "request": {
+            "name": "Get a video",
+            "description": {
+              "content": "Retrieves information about a single video by its key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos",
+                ":videoKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "videoKey",
+                  "description": "(Required) The unique key of the video."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7de1898-7c25-4014-81f4-d316de7d134a",
+              "name": "The video information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos",
+                    ":videoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "videoKey",
+                      "description": "(Required) The unique key of the video."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"key\": \"string\",\n  \"title\": \"string\",\n  \"coverImage\": {\n    \"sizes\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"primaryPlaybackUrl\": {\n    \"hls\": {\n      \"url\": \"https://AEWcFfcZtdFpsYmCx.agyEg4xYjnKRhoid1DX7xOm,.GXgKxi3o2CdOhJ10qLVLE,pk6cGJdzIkUo4YSepSP4AJODVvuGRAFg4,\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stream.byteark.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "17704e61-f45b-4a96-86fd-a2ee18e68d97",
+    "name": "ByteArk Live Videos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative OpenAPI description of ByteArk's public developer surfaces: the Stream Video-on-Demand API (create / upload / list / get videos) and the Fleet Live Streaming (live transcode) API. S3-compatible Storage and CDN delivery are documented separately by ByteArk; the Storage service is accessed via standard S3 clients and is not fully re-specified here.\n\nContact Support:\n Name: ByteArk Support",
+      "type": "text/plain"
+    }
+  }
+}
