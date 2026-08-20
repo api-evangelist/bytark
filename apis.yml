@@ -25,6 +25,16 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bytark.png
 tags:
 - Video
 - Streaming
+- Video-on-Demand
+- Live Streaming
+- CDN
+- Object Storage
+- Transcoding
+- DRM
+- Media
+tags_raw:
+- Video
+- Streaming
 - Video on Demand
 - Live Streaming
 - CDN
