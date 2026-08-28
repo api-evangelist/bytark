@@ -8,6 +8,18 @@ description: ByteArk is a Thailand-based video streaming and content delivery pl
   a global CDN, and a pre-configured web/mobile video player with DRM content protection.
   Developers integrate through REST APIs authenticated with personal access tokens
   and S3-compatible credentials.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
