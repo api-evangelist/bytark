@@ -1,0 +1,25 @@
+slug: bytark
+provider: ByteArk
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Live
+  spec_file: bytark-live-api-openapi.yml
+  capability_id: BC-3740.20
+  capability_id_l1: BC-3740
+  capability_name: OTT & Streaming Delivery
+  confidence: 0.78
+  evidence: createLiveChannel "Create a live channel"; listLiveChannels; schema "LiveChannel" — "Fleet
+    Live Streaming (live transcode) API"
+  reason: Provisioning and managing live streaming channels on a streaming/CDN platform is streaming delivery
+    operation, not production of the live event content itself.

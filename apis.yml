@@ -143,6 +143,9 @@ apis:
   - type: Documentation
     url: https://docs.byteark.com/en/stream/settings-video-players.html
 common:
+- type: CapabilityMap
+  url: capabilities/bytark-capability-edges.yml
+  name: ByteArk Business Capability Map
 - type: AgenticAccess
   url: agentic-access/bytark-agentic-access.yml
 - type: DomainSecurity
