@@ -121,6 +121,8 @@ apis:
   humanURL: https://docs.byteark.com/en/stream/
   baseURL: https://stream.byteark.com/api/v1
   tags:
+  - Video
+  tags_raw:
   - Videos
   properties:
   - type: OpenAPI
