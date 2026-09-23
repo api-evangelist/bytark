@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: ByteArk Live Videos API
+  title: ByteArk Videos API
   description: 'Representative OpenAPI description of ByteArk''s public developer surfaces: the Stream Video-on-Demand API (create / upload / list / get videos) and the Fleet Live Streaming (live transcode) API. S3-compatible Storage and CDN delivery are documented separately by ByteArk; the Storage service is accessed via standard S3 clients and is not fully re-specified here.'
   termsOfService: https://www.byteark.com/en/terms
   contact:
@@ -118,28 +118,6 @@ paths:
                 $ref: '#/components/schemas/Video'
 components:
   schemas:
-    CreateVideosRequest:
-      type: object
-      required:
-      - projectKey
-      - videos
-      properties:
-        projectKey:
-          type: string
-          description: The project the videos belong to.
-        videos:
-          type: array
-          items:
-            type: object
-            required:
-            - title
-            properties:
-              title:
-                type: string
-              tags:
-                type: array
-                items:
-                  type: string
     Video:
       type: object
       properties:
@@ -185,6 +163,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Video'
+    CreateVideosRequest:
+      type: object
+      required:
+      - projectKey
+      - videos
+      properties:
+        projectKey:
+          type: string
+          description: The project the videos belong to.
+        videos:
+          type: array
+          items:
+            type: object
+            required:
+            - title
+            properties:
+              title:
+                type: string
+              tags:
+                type: array
+                items:
+                  type: string
   securitySchemes:
     bearerAuth:
       type: http

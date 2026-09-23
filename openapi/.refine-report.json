@@ -1,9 +1,7 @@
 {
   "provider": "bytark",
   "sources": [
-    "bytark-live-api-openapi.yml",
-    "bytark-uploads-api-openapi.yml",
-    "bytark-videos-api-openapi.yml"
+    "_original/bytark-openapi.yml"
   ],
   "outputs": [
     "bytark-live-api-openapi.yml",
@@ -13,6 +11,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bytark-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "bytark-live-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bytark-uploads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bytark-videos-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

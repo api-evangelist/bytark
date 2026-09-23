@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: ByteArk Live API
   description: 'Representative OpenAPI description of ByteArk''s public developer surfaces: the Stream Video-on-Demand API (create / upload / list / get videos) and the Fleet Live Streaming (live transcode) API. S3-compatible Storage and CDN delivery are documented separately by ByteArk; the Storage service is accessed via standard S3 clients and is not fully re-specified here.'
