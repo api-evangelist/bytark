@@ -118,6 +118,47 @@ paths:
                 $ref: '#/components/schemas/Video'
 components:
   schemas:
+    CreateVideosRequest:
+      type: object
+      required:
+      - projectKey
+      - videos
+      properties:
+        projectKey:
+          type: string
+          description: The project the videos belong to.
+        videos:
+          type: array
+          items:
+            type: object
+            required:
+            - title
+            properties:
+              title:
+                type: string
+              tags:
+                type: array
+                items:
+                  type: string
+    VideoList:
+      type: object
+      properties:
+        total:
+          type: integer
+        from:
+          type: integer
+        to:
+          type: integer
+        currentPage:
+          type: integer
+        lastPage:
+          type: integer
+        perPage:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Video'
     Video:
       type: object
       properties:
@@ -144,47 +185,6 @@ components:
                 url:
                   type: string
                   format: uri
-    VideoList:
-      type: object
-      properties:
-        total:
-          type: integer
-        from:
-          type: integer
-        to:
-          type: integer
-        currentPage:
-          type: integer
-        lastPage:
-          type: integer
-        perPage:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Video'
-    CreateVideosRequest:
-      type: object
-      required:
-      - projectKey
-      - videos
-      properties:
-        projectKey:
-          type: string
-          description: The project the videos belong to.
-        videos:
-          type: array
-          items:
-            type: object
-            required:
-            - title
-            properties:
-              title:
-                type: string
-              tags:
-                type: array
-                items:
-                  type: string
   securitySchemes:
     bearerAuth:
       type: http
