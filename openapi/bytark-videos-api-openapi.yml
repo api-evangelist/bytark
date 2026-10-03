@@ -118,6 +118,32 @@ paths:
                 $ref: '#/components/schemas/Video'
 components:
   schemas:
+    Video:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+          description: Unique video key used for uploads and playback references.
+        title:
+          type: string
+        coverImage:
+          type: object
+          properties:
+            sizes:
+              type: object
+              additionalProperties:
+                type: string
+        primaryPlaybackUrl:
+          type: object
+          properties:
+            hls:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
     CreateVideosRequest:
       type: object
       required:
@@ -159,32 +185,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Video'
-    Video:
-      type: object
-      properties:
-        id:
-          type: string
-        key:
-          type: string
-          description: Unique video key used for uploads and playback references.
-        title:
-          type: string
-        coverImage:
-          type: object
-          properties:
-            sizes:
-              type: object
-              additionalProperties:
-                type: string
-        primaryPlaybackUrl:
-          type: object
-          properties:
-            hls:
-              type: object
-              properties:
-                url:
-                  type: string
-                  format: uri
   securitySchemes:
     bearerAuth:
       type: http
