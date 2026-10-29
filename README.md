@@ -1,4 +1,4 @@
-# ByteArk (bytark)
+# ByteArk
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,145 +66,120 @@
 
 ByteArk is a Thailand-based video streaming and content delivery platform founded in 2012 and headquartered in Bangkok. It provides video-on-demand (ByteArk Stream), live streaming (Fleet / Teatro), an S3-compatible object storage service, a global CDN, and a pre-configured web/mobile video player with DRM content protection. Developers integrate through REST APIs authenticated with personal access tokens and S3-compatible credentials.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bytark/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bytark/refs/heads/main/apis.yml)
+**Areas:** Video · Streaming · Video-on-Demand · Live Streaming · CDN · Object Storage · Transcoding · DRM · Media
 
-## Tags
+## ByteArk on APIs.io
 
-- Video
-- Streaming
-- Video on Demand
-- Live Streaming
-- CDN
-- Object Storage
-- Transcoding
-- DRM
-- Media
+Everything profiled for ByteArk is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bytark/](https://apis.io/providers/bytark/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (3)
 
-- **Created:** 2026-07-01
-- **Modified:** 2026-07-01
+- [ByteArk Live API](https://apis.io/apis/bytark/bytark-live-api/) — Fleet live transcode channels.
+- [ByteArk Uploads API](https://apis.io/apis/bytark/bytark-uploads-api/) — Uploading source video files to a Stream video record.
+- [ByteArk Videos API](https://apis.io/apis/bytark/bytark-videos-api/) — Video-on-demand records and playback in ByteArk Stream.
 
-## APIs
+### Published properties
 
-### ByteArk Stream Video API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create video records within a project, upload source files, list and filter the content library, and retrieve per-video information including the HLS primary playback URL. Uploads use the ByteArk Stream Video Upload SDK or direct form-data / resumable upload endpoints.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.byteark.com/en/stream/](https://docs.byteark.com/en/stream/)
-- **Base URL:** `https://stream.byteark.com/api/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Bytark Agentic Access](https://apis.io/agentic-access/bytark/bytark-agentic-access/)
 
-- Video
-- Video on Demand
-- Transcoding
-- Media
+#### Collections (4)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.byteark.com/en/stream/)
-- [API Reference](https://docs.byteark.com/en/stream/developer-api-video-uploading.html)
-- [OpenAPI](openapi/bytark-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bytark.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bytark.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [ByteArk API](https://apis.io/collections/bytark/open-bytark/)
+- [ByteArk Live API](https://apis.io/collections/bytark/open-bytark-live-api/)
+- [ByteArk Live Uploads API](https://apis.io/collections/bytark/open-bytark-uploads-api/)
+- [ByteArk Live Videos API](https://apis.io/collections/bytark/open-bytark-videos-api/)
 
-### ByteArk Live Streaming API
+#### Security (2)
 
-Fleet live transcode API to create, list, and delete live streaming channels. Returns an RTMP publish endpoint and stream key for ingest, an HLS (index.m3u8) viewing URL, and per-resolution transcode profiles. Also supports dropping a publisher and resetting the transcoder.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.byteark.com/en/fleet-streaming/live-api-transcoder.html](https://docs.byteark.com/en/fleet-streaming/live-api-transcoder.html)
-- **Base URL:** `https://fleet.byteark.com/api`
+- [Bytark Authentication](https://apis.io/security/bytark/bytark-authentication/)
+- [Bytark Domain Security](https://apis.io/security/bytark/bytark-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Live Streaming
-- Transcoding
-- RTMP
-- Media
+Published plans, tiers and prices.
 
-#### Properties
+- [Bytark Plans Pricing](https://apis.io/plans/bytark/bytark-plans-pricing/)
 
-- [Documentation](https://docs.byteark.com/en/fleet-streaming/live-api-transcoder.html)
-- [API Reference](https://docs.byteark.com/en/fleet-streaming/live-api-transcoder.html)
-- [OpenAPI](openapi/bytark-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bytark.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bytark.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### ByteArk Storage API
+Published request limits.
 
-S3-compatible object storage for storing and distributing files. Works with standard S3 SDKs and tooling (bucket and object operations - put, get, list, delete) using access-key / secret-key credentials. Tiered by redundancy (Basic, Standard, Extra Redundancy).
+- [Bytark Rate Limits](https://apis.io/rate-limits/bytark/bytark-rate-limits/)
 
-- **Human URL:** [https://docs.byteark.com/en/storage/](https://docs.byteark.com/en/storage/)
-- **Base URL:** `https://storage.byteark.com`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Object Storage
-- S3
-- Files
-- Storage
+- [Bytark Finops](https://apis.io/finops/bytark/bytark-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.byteark.com/en/storage/)
-- [OpenAPI](openapi/bytark-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bytark.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bytark.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### ByteArk CDN API
-
-ByteArk Fleet CDN delivers web, app, and media assets across 15+ global points of presence with 10+ POPs in Thailand. Developer surfaces cover cache purge / invalidation and delivery configuration for origins served through the edge network.
-
-- **Human URL:** [https://docs.byteark.com/en/fleet/](https://docs.byteark.com/en/fleet/)
-- **Base URL:** `https://fleet.byteark.com/api`
-
-#### Tags
-
-- CDN
-- Delivery
-- Caching
-- Edge
-
-#### Properties
-
-- [Documentation](https://docs.byteark.com/en/fleet/)
-- [OpenAPI](openapi/bytark-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bytark.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bytark.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### ByteArk Player API
-
-Pre-configured HTML5 video player with framework packages for React, Vue, and Angular. Renders HLS playback with DRM content protection (including WisePlay), signed-URL access, and player-settings configuration surfaced through the Stream player settings.
-
-- **Human URL:** [https://docs.byteark.com/en/stream/settings-video-players.html](https://docs.byteark.com/en/stream/settings-video-players.html)
-- **Base URL:** `https://player.byteark.com`
-
-#### Tags
-
-- Player
-- Embed
-- Media
-- DRM
-
-#### Properties
-
-- [Documentation](https://docs.byteark.com/en/stream/settings-video-players.html)
-- [OpenAPI](openapi/bytark-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bytark.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bytark.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/byteark)
-- [LinkedIn](https://www.linkedin.com/company/byteark)
 - [Website](https://www.byteark.com/)
 - [Documentation](https://docs.byteark.com/en/)
-- [Plans](plans/bytark-plans-pricing.yml)
-- [Rate Limits](rate-limits/bytark-rate-limits.yml)
-- [Fin Ops](finops/bytark-finops.yml)
+- [Blog](https://www.byteark.com/blogs)
+- [GitHub](https://github.com/byteark)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 47.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bytark/](https://apis.io/providers/bytark/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ByteArk: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bytark/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
